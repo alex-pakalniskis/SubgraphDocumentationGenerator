@@ -1,2 +1,2 @@
 # SubgraphDocumentationGenerator
-TypeScript implementation of Subgraph Documentation Generator
+Rust implementation of Subgraph Documentation Generator

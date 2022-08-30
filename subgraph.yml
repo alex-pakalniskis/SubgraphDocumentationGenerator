@@ -1,0 +1,93 @@
+dataSources:
+  - kind: ethereum/contract
+    mapping:
+      abis:
+        - file:
+            /: /ipfs/Qmbh5WGsjscMS6RvPQuxZmDiVyXyUunyHh4DoBhQ86ot8G
+          name: Everest
+        - file:
+            /: /ipfs/QmWwrty33P1X2pso7JFupZeSqiBFTibu8mXjjTdkgkkGZ4
+          name: Dai
+      apiVersion: 0.0.4
+      entities:
+        - Project
+        - Category
+        - Challenge
+        - Everest
+        - Vote
+        - User
+      eventHandlers:
+        - event: 'NewMember(indexed address,uint256,uint256)'
+          handler: handleNewMember
+        - event: MemberExited(indexed address)
+          handler: handleMemberExited
+        - event: CharterUpdated(indexed bytes32)
+          handler: handleCharterUpdated
+        - event: CategoriesUpdated(indexed bytes32)
+          handler: handleCategoriesUpdated
+        - event: 'Withdrawal(indexed address,uint256)'
+          handler: handleWithdrawal
+        - event: >-
+            EverestDeployed(address,address,uint256,uint256,uint256,bytes32,bytes32,address,address,address,uint256)
+          handler: handleEverestDeployed
+        - event: >-
+            MemberChallenged(indexed address,indexed uint256,indexed
+            address,uint256,bytes32)
+          handler: handleMemberChallenged
+        - event: >-
+            SubmitVote(indexed uint256,indexed address,indexed
+            address,uint8,uint256)
+          handler: handleSubmitVote
+        - event: >-
+            ChallengeFailed(indexed address,indexed
+            uint256,uint256,uint256,uint256,uint256)
+          handler: handleChallengeFailed
+        - event: >-
+            ChallengeSucceeded(indexed address,indexed
+            uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleChallengeSucceeded
+      file:
+        /: /ipfs/QmRWLA8mVwqDRBcggvzcmHvR3YZcpLt5FG3e8nhGqByEY7
+      kind: ethereum/events
+      language: wasm/assemblyscript
+    name: Everest
+    network: mainnet
+    source:
+      abi: Everest
+      address: '0x445B774C012c5418d6D885f6cbfEB049a7FE6558'
+      startBlock: 9923744
+  - kind: ethereum/contract
+    mapping:
+      abis:
+        - file:
+            /: /ipfs/QmWKs3HTZWFBdnnPu96FoobPAusBBgrYmNS3jNHqoV3RBD
+          name: EthereumDIDRegistry
+      apiVersion: 0.0.4
+      entities:
+        - Project
+        - User
+        - Category
+        - Everest
+      eventHandlers:
+        - event: 'DIDOwnerChanged(indexed address,address,uint256)'
+          handler: handleDIDOwnerChanged
+        - event: 'DIDDelegateChanged(indexed address,bytes32,address,uint256,uint256)'
+          handler: handleDIDDelegateChanged
+        - event: 'DIDAttributeChanged(indexed address,bytes32,bytes,uint256,uint256)'
+          handler: handleDIDAttributeChanged
+      file:
+        /: /ipfs/QmU1Ss5WsKbyy9da7k8wNSHTPUd7LrvTcqXw2Nm3rVkF9h
+      kind: ethereum/events
+      language: wasm/assemblyscript
+    name: EthereumDIDRegistry
+    network: mainnet
+    source:
+      abi: EthereumDIDRegistry
+      address: '0xdCa7EF03e98e0DC2B855bE647C39ABe984fcF21B'
+      startBlock: 9923744
+description: Universally shared projects registry
+repository: 'https://github.com/graphprotocol/everest'
+schema:
+  file:
+    /: /ipfs/QmV9J3YqyyEasbpJmTqMoQkVi5vvSNuz1RBrMS2cHtJUK2
+specVersion: 0.0.2
