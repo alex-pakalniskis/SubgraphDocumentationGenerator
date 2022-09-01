@@ -1,2 +1,1 @@
 # SubgraphDocumentationGenerator
-Rust implementation of Subgraph Documentation Generator
