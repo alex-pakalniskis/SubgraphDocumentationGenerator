@@ -160,3 +160,5 @@ cython_debug/
 #.idea/
 
 subgraphdocs/
+
+src/__pycache__
