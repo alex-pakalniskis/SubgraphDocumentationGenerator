@@ -25,11 +25,18 @@ def parse(manifest_ipfs_hash: str) -> ManifestOutput:
     
     return ManifestOutput(description=description, repository=repository, spec_version=spec_version, schema_hash=schema_hash, data_sources=data_sources)
 
-if __name__ == "__main__":
+
+
+def main():
     manifest_hash: str = "QmVsp1bC9rS3rf861cXgyvsqkpdsTXKSnS4729boXZvZyH"
-    parse(manifest_hash)
+    manifest = parse(manifest_hash)
+    for source in manifest.data_sources:
+        print(source.kind)
+        print(source.mapping)
+        print(source.name)
+        print(source.network)
+        print(source.source)
+        print("\n")
 
-    
-    
-
-
+if __name__ == "__main__":
+    main()
