@@ -2,8 +2,7 @@ import requests
 import re
 from classes import SchemaOutput
 
-# uninstall the graphql parsing library
-# wasn't worth it
+
 def parse_graphql(schema_ipfs_hash: str, commented:bool = True):
     if commented == True:
         s = requests.get(f"https://ipfs.io{schema_ipfs_hash}")

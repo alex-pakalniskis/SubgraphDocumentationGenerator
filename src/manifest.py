@@ -26,7 +26,6 @@ def parse(manifest_ipfs_hash: str) -> ManifestOutput:
     return ManifestOutput(description=description, repository=repository, spec_version=spec_version, schema_hash=schema_hash, data_sources=data_sources)
 
 
-
 def main():
     manifest_hash: str = "QmVsp1bC9rS3rf861cXgyvsqkpdsTXKSnS4729boXZvZyH"
     manifest = parse(manifest_hash)
