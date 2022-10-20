@@ -34,7 +34,30 @@ def parse_yml(manifest_ipfs_hash: str) -> ManifestOutput:
         )
 
 
-def parse_graphql(schema_ipfs_hash: str, commented:bool = True):
+def manifest_data_sources_to_json(manifest: ManifestOutput) -> dict():
+    data = dict()
+    for i in range(len(manifest.data_sources)):
+        data[i] = {}
+        data[i]["kind"] = manifest.data_sources[i].kind
+        data[i]["mapping"] = manifest.data_sources[i].mapping
+        data[i]["name"] = manifest.data_sources[i].name
+        data[i]["network"] = manifest.data_sources[i].network
+        data[i]["source"] = manifest.data_sources[i].source
+        return data
+
+def manifest_output_to_json(manifest) -> dict:
+    data = dict()
+    data["schema_hash"] = manifest.schema_hash
+    data["repository"] = manifest.repository
+    data["spec_version"] = manifest.spec_version
+    data["description"] = manifest.description
+    data["data_sources"] = manifest_data_sources_to_json(manifest)
+    return data
+
+
+
+
+def parse_gql(schema_ipfs_hash: str, commented:bool = True):
     if commented == True:
         s = requests.get(f"https://ipfs.io{schema_ipfs_hash}")
         s_text = s.text
@@ -86,7 +109,7 @@ def generate_entities_page(schema_data: SchemaOutput):
     entities_page.save()
 
 def generate_queries_page(schema_data: SchemaOutput):
-    entities_page = EntitiesPage(schema_data)
+    entities_page = QueriesPage(schema_data)
     entities_page.generate()
     entities_page.save()
 
